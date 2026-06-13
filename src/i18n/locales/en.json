@@ -1,0 +1,72 @@
+{
+  "common": {
+    "brandName": "Murphy Repos",
+    "tagline": "Creative solutions for modern businesses",
+    "contactEmail": "hello@murphyrepos.com",
+    "careersEmail": "careers@murphyrepos.com",
+    "copyright": "Murphy Repos. All rights reserved."
+  },
+  "labels": {
+    "inquiryType": "Inquiry type",
+    "name": "Name",
+    "email": "Email",
+    "company": "Company",
+    "budget": "Budget",
+    "message": "Message",
+    "position": "Position",
+    "jobCode": "Job code",
+    "phone": "Phone",
+    "links": "LinkedIn / Portfolio",
+    "coverLetter": "Cover letter",
+    "resume": "Resume",
+    "contactSummary": "Inquiry summary",
+    "contactDetails": "Contact details",
+    "applicationSummary": "Application summary",
+    "candidateDetails": "Candidate details",
+    "submitted": "Submitted",
+    "nextSteps": "Next steps",
+    "whatHappensNext": "What happens next?"
+  },
+  "contactInquiryInternal": {
+    "subject": "New inquiry: {{inquiryType}}",
+    "preview": "New contact form inquiry from {{name}}",
+    "title": "New inquiry received",
+    "subtitle": "A new contact form inquiry is ready for review.",
+    "intro": "A new inquiry has been submitted through the Murphy Repos contact form. Details are listed below for review and follow up.",
+    "messageLabel": "Client message",
+    "nextSteps": "Assign this inquiry to a team member\nRespond to the client within 24 hours\nAdd the lead to the CRM system"
+  },
+  "contactConfirmation": {
+    "subject": "We received your message",
+    "preview": "Thanks for reaching out. We will be in touch within 24 hours.",
+    "title": "We've received your inquiry",
+    "subtitle": "We'll be in touch within 24 hours.",
+    "intro": "Thank you for reaching out to Murphy Repos. We've successfully received your inquiry and a member of our team will be in contact with you within 24 hours.",
+    "messageLabel": "Your message",
+    "outro": "In the meantime, feel free to reply to this email if you have any additional questions.",
+    "signature": "Warm regards",
+    "team": "The Murphy Repos Team"
+  },
+  "jobApplicationInternal": {
+    "subject": "New application: {{position}} ({{jobCode}})",
+    "preview": "{{name}} applied for {{position}}",
+    "title": "New job application received",
+    "subtitle": "Candidate details are ready for review.",
+    "intro": "{{name}} applied for {{position}}. The application details are listed below.",
+    "resumeAttached": "Resume attached to this email."
+  },
+  "jobApplicationConfirmation": {
+    "subject": "We received your application",
+    "preview": "Your application has been received.",
+    "title": "Application received. Thank you!",
+    "subtitle": "We'll review your application and get back to you within two weeks.",
+    "intro": "We're glad you applied. We've successfully received your application to join Murphy Repos and we're excited that you're interested in being part of our team.",
+    "summaryIntro": "Here is a confirmation of the position you applied to:",
+    "nextStepsTitle": "What happens next?",
+    "nextSteps": "We review every application carefully. You can expect to hear back from us within two weeks. There's no need to follow up before then. We'll reach out either way.",
+    "outro": "If you need to update any information in your application or have a question that truly cannot wait, you can reply to this email and our team will do their best to help.",
+    "referenceNote": "Please save your reference ID {{jobCode}} in case you need to reference your application in any future correspondence.",
+    "signature": "Best of luck",
+    "team": "The Murphy Repos Hiring Team"
+  }
+}
