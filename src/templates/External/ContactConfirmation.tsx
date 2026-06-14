@@ -28,12 +28,10 @@ const ContactConfirmation = ({
 
   return (
     <EmailLayout preview={conf.preview} title={conf.title} locale={locale}>
-      <Text className='m-0 text-[15px] leading-relaxed text-ink'>
+      <Text className="m-0 text-[15px] leading-relaxed text-ink">
         Hi <strong>{name}</strong>,
       </Text>
-      <Text className='m-0 mt-7 text-[16px] leading-relaxed text-slate-700'>
-        {conf.intro}
-      </Text>
+      <Text className="m-0 mt-7 text-[16px] leading-relaxed text-slate-700">{conf.intro}</Text>
       <DetailTable
         title={t.labels.contactSummary}
         rows={[
@@ -45,17 +43,15 @@ const ContactConfirmation = ({
         ]}
       />
       <MessageBlock title={conf.messageLabel}>
-        <Text className='m-0 whitespace-pre-wrap text-[15px] italic leading-relaxed text-slate-700'>
+        <Text className="m-0 whitespace-pre-wrap text-[15px] italic leading-relaxed text-slate-700">
           "{message}"
         </Text>
       </MessageBlock>
-      <Text className='m-0 text-[15px] leading-relaxed text-slate-700'>
-        {conf.outro}
-      </Text>
-      <Text className='m-0 mt-7 text-[15px] leading-relaxed text-slate-700'>
+      <Text className="m-0 text-[15px] leading-relaxed text-slate-700">{conf.outro}</Text>
+      <Text className="m-0 mt-7 text-[15px] leading-relaxed text-slate-700">
         {conf.signature},
         <br />
-        <strong className='text-brand'>{conf.team}</strong>
+        <strong className="text-brand">{conf.team}</strong>
       </Text>
     </EmailLayout>
   );

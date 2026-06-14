@@ -7,12 +7,8 @@ type MessageBlockProps = {
   variant?: 'plain' | 'accent';
 };
 
-const MessageBlock = ({
-  title,
-  children,
-  variant = 'plain',
-}: MessageBlockProps) => (
-  <Section className='my-7'>
+const MessageBlock = ({ title, children, variant = 'plain' }: MessageBlockProps) => (
+  <Section className="my-7">
     <Text
       className={
         variant === 'accent'

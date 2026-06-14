@@ -11,6 +11,6 @@ const props = {
     'I have spent the last six years building design systems and production React applications, and I would love to bring that experience to your team.',
 };
 
-export const English = () => <JobApplicationInternal locale='en' {...props} />;
+export const English = () => <JobApplicationInternal locale="en" {...props} />;
 
 export default English;

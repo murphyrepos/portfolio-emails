@@ -11,6 +11,6 @@ const props = {
     "Hi, I'm interested in learning more about your repository management services and how they might integrate with our current CI/CD pipeline.\n\nWe're looking for a scalable solution that can handle around 50 active developers.",
 };
 
-export const English = () => <ContactInquiryInternal locale='en' {...props} />;
+export const English = () => <ContactInquiryInternal locale="en" {...props} />;
 
 export default English;

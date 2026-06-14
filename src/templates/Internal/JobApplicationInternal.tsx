@@ -36,12 +36,12 @@ const JobApplicationInternal = ({
       title={conf.title}
       locale={locale}
     >
-      <Text className='m-0 text-[16px] leading-relaxed text-slate-700'>
+      <Text className="m-0 text-[16px] leading-relaxed text-slate-700">
         {interpolate(conf.intro, { name, position, jobCode })}
       </Text>
       <DetailTable
         title={t.labels.candidateDetails}
-        variant='accent'
+        variant="accent"
         rows={[
           { label: t.labels.position, value: position },
           { label: t.labels.jobCode, value: jobCode },
@@ -51,20 +51,18 @@ const JobApplicationInternal = ({
           { label: t.labels.links, value: links },
         ]}
       />
-      <MessageBlock title={t.labels.coverLetter} variant='accent'>
-        <Text className='m-0 whitespace-pre-wrap text-[15px] leading-relaxed text-slate-700'>
+      <MessageBlock title={t.labels.coverLetter} variant="accent">
+        <Text className="m-0 whitespace-pre-wrap text-[15px] leading-relaxed text-slate-700">
           {coverLetter}
         </Text>
       </MessageBlock>
-      <MessageBlock title={t.labels.resume} variant='accent'>
+      <MessageBlock title={t.labels.resume} variant="accent">
         {resumeUrl ? (
-          <Link href={resumeUrl} className='text-[15px] text-brand'>
+          <Link href={resumeUrl} className="text-[15px] text-brand">
             {resumeUrl}
           </Link>
         ) : (
-          <Text className='m-0 text-[15px] text-slate-700'>
-            {conf.resumeAttached}
-          </Text>
+          <Text className="m-0 text-[15px] text-slate-700">{conf.resumeAttached}</Text>
         )}
       </MessageBlock>
     </EmailLayout>

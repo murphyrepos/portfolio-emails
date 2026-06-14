@@ -40,17 +40,11 @@ const ContactInquiryInternal = ({
   ].filter((row): row is { label: string; value: string } => Boolean(row));
 
   return (
-    <EmailLayout
-      preview={interpolate(conf.preview, { name })}
-      title={conf.title}
-      locale={locale}
-    >
-      <Text className='m-0 text-[16px] leading-relaxed text-slate-700'>
-        {conf.intro}
-      </Text>
-      <DetailTable title={t.labels.contactDetails} rows={rows} variant='accent' />
-      <MessageBlock title={conf.messageLabel} variant='accent'>
-        <Text className='m-0 whitespace-pre-wrap text-[15px] leading-relaxed text-slate-700'>
+    <EmailLayout preview={interpolate(conf.preview, { name })} title={conf.title} locale={locale}>
+      <Text className="m-0 text-[16px] leading-relaxed text-slate-700">{conf.intro}</Text>
+      <DetailTable title={t.labels.contactDetails} rows={rows} variant="accent" />
+      <MessageBlock title={conf.messageLabel} variant="accent">
+        <Text className="m-0 whitespace-pre-wrap text-[15px] leading-relaxed text-slate-700">
           "{message}"
         </Text>
       </MessageBlock>

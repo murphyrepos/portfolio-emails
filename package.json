@@ -8,6 +8,8 @@
   "scripts": {
     "dev": "email dev --dir previews --port 3001",
     "export": "email export --dir previews",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -21,6 +23,7 @@
   "devDependencies": {
     "@react-email/ui": "^6.6.0",
     "@types/react": "^19.2.13",
+    "prettier": "^3.8.4",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-email": "^6.6.0",

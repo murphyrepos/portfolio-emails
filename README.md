@@ -36,12 +36,12 @@ files — production templates must stay prop-driven.
 
 ## Templates
 
-| Template | Sent to | Trigger |
-| --- | --- | --- |
-| `ContactInquiryInternal` | hello@ / careers@ | Contact form submission |
-| `ContactConfirmation` | the visitor | Contact form submission |
-| `JobApplicationInternal` | careers@ | Job application |
-| `JobApplicationConfirmation` | the applicant | Job application |
+| Template                     | Sent to           | Trigger                 |
+| ---------------------------- | ----------------- | ----------------------- |
+| `ContactInquiryInternal`     | hello@ / careers@ | Contact form submission |
+| `ContactConfirmation`        | the visitor       | Contact form submission |
+| `JobApplicationInternal`     | careers@          | Job application         |
+| `JobApplicationConfirmation` | the applicant     | Job application         |
 
 All templates take a `locale` prop (defaults to `en`). Logo URLs are derived
 from `EMAIL_ASSET_BASE_URL`, falling back to `NEXT_PUBLIC_SITE_URL`, then
@@ -67,7 +67,7 @@ via `getEmailMessages(locale)` so subject and body always match.
 
 ```ts
 // next.config.ts
-transpilePackages: ['@interstellar/emails']
+transpilePackages: ['@interstellar/emails'];
 ```
 
 ```ts

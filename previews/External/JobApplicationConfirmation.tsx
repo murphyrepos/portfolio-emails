@@ -8,6 +8,6 @@ const props = {
   submittedAt: 'June 13, 2026',
 };
 
-export const English = () => <JobApplicationConfirmation locale='en' {...props} />;
+export const English = () => <JobApplicationConfirmation locale="en" {...props} />;
 
 export default English;
