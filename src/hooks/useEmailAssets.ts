@@ -52,7 +52,7 @@ export const useEmailAssets = ({
 
       return {
         assetBaseUrl,
-        logoUrl: logoUrl ?? `${assetBaseUrl}/logos/small_white.png`,
+        logoUrl: logoUrl ?? `${assetBaseUrl}/logos/white.png`,
         logoMarkUrl: logoMarkUrl ?? `${assetBaseUrl}/logos/small_white.png`,
       };
     },
