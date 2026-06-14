@@ -8,28 +8,27 @@ type CompanyFooterProps = {
 
 const CompanyFooter = ({ locale }: CompanyFooterProps) => {
   const { t } = useTranslation(locale);
-  const { logoMarkUrl } = useEmailAssets();
+  const { logoUrl } = useEmailAssets();
 
   return (
     <>
-      <Hr className='mx-8 my-0 border-slate-200' />
-      <Section className='rounded-b-lg bg-white px-8 py-6'>
+      <Hr className="mx-8 my-0 border-slate-200" />
+      <Section className="rounded-b-lg bg-white px-8 py-6">
         <Row>
-          <Column className='w-[44px] align-middle'>
-            <Section className='m-0 h-9 w-9 rounded-md bg-brand p-1.5'>
+          <Column className="w-[44px] align-left">
+            <Section className="m-0 h-9 w-9 rounded-md p-1.5 bg-transparent">
               <Img
-                src={logoMarkUrl}
+                src={logoUrl}
                 alt={t.common.brandName}
-                width='24'
-                height='24'
-                className='block'
+                height="24"
+                className="block w-auto cover"
               />
             </Section>
           </Column>
-          <Column className='align-middle'>
-            <Text className='m-0 text-[18px] font-bold text-brand'>
-              {t.common.brandName}
-            </Text>
+        </Row>
+        <Row>
+          <Column className="align-left">
+            <Text className="m-0 text-[14px] text-slate-500">{t.common.disclaimer}</Text>
           </Column>
         </Row>
       </Section>

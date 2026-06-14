@@ -7,11 +7,7 @@ type EmailCalloutProps = {
   variant?: 'brand' | 'soft';
 };
 
-const EmailCallout = ({
-  title,
-  children,
-  variant = 'soft',
-}: EmailCalloutProps) => (
+const EmailCallout = ({ title, children, variant = 'soft' }: EmailCalloutProps) => (
   <Section
     className={
       variant === 'brand'

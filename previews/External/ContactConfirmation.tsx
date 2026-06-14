@@ -1,15 +1,22 @@
-import ContactConfirmation from '../../src/templates/External/ContactConfirmation';
+import { getEmailMessages, languages } from '../../src/i18n';
+import ContactConfirmation, {
+  ContactConfirmationContent,
+} from '../../src/templates/External/ContactConfirmation';
+import LocalizedEmailPreview from '../_components/LocalizedEmailPreview';
+import { createContactPreviewProps } from '../sampleData';
 
-const props = {
-  inquiryType: 'General consultation',
-  name: 'Jane Smith',
-  email: 'jane.smith@example.com',
-  company: 'Acme Corp',
-  budget: '$5,000 to $10,000',
-  message:
-    "Hi, I'm interested in learning more about your repository management services and how they might integrate with our current CI/CD pipeline.\n\nWe're looking for a scalable solution that can handle around 50 active developers.",
-};
+const props = createContactPreviewProps(1001);
 
-export const English = () => <ContactConfirmation locale='en' {...props} />;
+export const English = () => <ContactConfirmation {...props} locale="en" />;
 
-export default English;
+const Preview = () => (
+  <LocalizedEmailPreview
+    languages={languages}
+    getPreview={(locale) => getEmailMessages(locale).contactConfirmation.preview}
+    getSubject={(locale) => getEmailMessages(locale).contactConfirmation.subject}
+    getTitle={(locale) => getEmailMessages(locale).contactConfirmation.title}
+    renderBody={(locale) => <ContactConfirmationContent {...props} locale={locale} />}
+  />
+);
+
+export default Preview;

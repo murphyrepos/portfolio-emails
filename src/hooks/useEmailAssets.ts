@@ -8,8 +8,7 @@ declare const process:
 
 const fallbackEmailAssetBaseUrl = 'https://murphyrepos.com';
 
-const withProtocol = (url: string) =>
-  /^https?:\/\//i.test(url) ? url : `https://${url}`;
+const withProtocol = (url: string) => (/^https?:\/\//i.test(url) ? url : `https://${url}`);
 
 const normalizeEmailAssetBaseUrl = (url: string) => {
   const urlWithProtocol = withProtocol(url).replace(/\/+$/, '');
@@ -42,19 +41,13 @@ type UseEmailAssetsOptions = {
   logoMarkUrl?: string;
 };
 
-export const useEmailAssets = ({
-  logoUrl,
-  logoMarkUrl,
-}: UseEmailAssetsOptions = {}) =>
-  useMemo(
-    () => {
-      const assetBaseUrl = getEmailAssetBaseUrl();
+export const useEmailAssets = ({ logoUrl, logoMarkUrl }: UseEmailAssetsOptions = {}) =>
+  useMemo(() => {
+    const assetBaseUrl = getEmailAssetBaseUrl();
 
-      return {
-        assetBaseUrl,
-        logoUrl: logoUrl ?? `${assetBaseUrl}/logos/small_white.png`,
-        logoMarkUrl: logoMarkUrl ?? `${assetBaseUrl}/logos/small_white.png`,
-      };
-    },
-    [logoUrl, logoMarkUrl]
-  );
+    return {
+      assetBaseUrl,
+      logoUrl: logoUrl ?? `${assetBaseUrl}/logos/white.png`,
+      logoMarkUrl: logoMarkUrl ?? `${assetBaseUrl}/logos/small_white.png`,
+    };
+  }, [logoUrl, logoMarkUrl]);

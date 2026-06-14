@@ -1,16 +1,30 @@
-import ContactInquiryInternal from '../../src/templates/Internal/ContactInquiryInternal';
+import { getEmailMessages, interpolate, languages } from '../../src/i18n';
+import ContactInquiryInternal, {
+  ContactInquiryInternalContent,
+} from '../../src/templates/Internal/ContactInquiryInternal';
+import LocalizedEmailPreview from '../_components/LocalizedEmailPreview';
+import { createContactInternalPreviewProps } from '../sampleData';
 
-const props = {
-  inquiryType: 'General consultation',
-  name: 'Jane Smith',
-  email: 'jane.smith@example.com',
-  company: 'Acme Corp',
-  budget: '$5,000 to $10,000',
-  submittedAt: 'June 13, 2026 at 10:42 AM UTC',
-  message:
-    "Hi, I'm interested in learning more about your repository management services and how they might integrate with our current CI/CD pipeline.\n\nWe're looking for a scalable solution that can handle around 50 active developers.",
-};
+const props = createContactInternalPreviewProps(3001);
 
-export const English = () => <ContactInquiryInternal locale='en' {...props} />;
+export const English = () => <ContactInquiryInternal {...props} locale="en" />;
 
-export default English;
+const Preview = () => (
+  <LocalizedEmailPreview
+    languages={languages}
+    getPreview={(locale) =>
+      interpolate(getEmailMessages(locale).contactInquiryInternal.preview, {
+        name: props.name,
+      })
+    }
+    getSubject={(locale) =>
+      interpolate(getEmailMessages(locale).contactInquiryInternal.subject, {
+        inquiryType: props.template.inquiryType,
+      })
+    }
+    getTitle={(locale) => getEmailMessages(locale).contactInquiryInternal.title}
+    renderBody={(locale) => <ContactInquiryInternalContent {...props} locale={locale} />}
+  />
+);
+
+export default Preview;
