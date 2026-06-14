@@ -1,20 +1,37 @@
 {
-  "name": "@interstellar/emails",
+  "name": "@murphyrepos/emails",
   "version": "0.1.0",
-  "private": true,
+  "packageManager": "pnpm@10.31.0",
+  "type": "module",
+  "private": false,
   "description": "Transactional email templates for the Interstellar portfolio, built with React Email.",
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
+    "build": "bunup index.ts --format esm --dts --out-dir dist --packages external --external react,react-dom,@react-email/components --no-splitting --no-exports",
     "dev": "email dev --dir previews --port 3001",
     "export": "email export --dir previews",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "prepublishOnly": "pnpm run typecheck && pnpm run build",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@react-email/components": "^1.0.12",
-    "@react-email/render": "^2.0.8"
+    "@react-email/components": "^1.0.12"
   },
   "peerDependencies": {
     "react": "^19.0.0",
@@ -24,6 +41,7 @@
     "@faker-js/faker": "^10.4.0",
     "@react-email/ui": "^6.6.0",
     "@types/react": "^19.2.13",
+    "bunup": "^0.16.32",
     "prettier": "^3.8.4",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",

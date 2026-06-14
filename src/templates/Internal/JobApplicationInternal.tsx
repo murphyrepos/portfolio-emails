@@ -4,6 +4,7 @@ import EmailLayout from '../../components/EmailLayout';
 import MessageBlock from '../../components/MessageBlock';
 import { useTranslation } from '../../i18n/useTranslation';
 import type { EmailProps } from '../../types';
+import type { ReactElement } from 'react';
 
 export type JobApplicationInternalTemplateProps = {
   position: string;
@@ -22,7 +23,7 @@ export const JobApplicationInternalContent = ({
   email,
   attachment,
   template: { position, jobCode, phone = '', links = '', coverLetter, resumeUrl },
-}: JobApplicationInternalProps) => {
+}: JobApplicationInternalProps): ReactElement => {
   const { t, interpolate } = useTranslation(locale);
   const conf = t.jobApplicationInternal;
   const resumeHref = attachment?.url ?? resumeUrl;
@@ -64,7 +65,7 @@ export const JobApplicationInternalContent = ({
   );
 };
 
-const JobApplicationInternal = (props: JobApplicationInternalProps) => {
+const JobApplicationInternal = (props: JobApplicationInternalProps): ReactElement => {
   const { t, interpolate } = useTranslation(props.locale);
   const conf = t.jobApplicationInternal;
   const { name, template } = props;

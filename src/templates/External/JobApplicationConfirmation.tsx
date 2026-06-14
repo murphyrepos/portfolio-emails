@@ -4,6 +4,7 @@ import EmailCallout from '../../components/EmailCallout';
 import EmailLayout from '../../components/EmailLayout';
 import { useTranslation } from '../../i18n/useTranslation';
 import type { EmailProps } from '../../types';
+import type { ReactElement } from 'react';
 
 export type JobApplicationConfirmationTemplateProps = {
   position: string;
@@ -18,7 +19,7 @@ export const JobApplicationConfirmationContent = ({
   name,
   email,
   template: { position, jobCode, submittedAt = '' },
-}: JobApplicationConfirmationProps) => {
+}: JobApplicationConfirmationProps): ReactElement => {
   const { t, interpolate } = useTranslation(locale);
   const conf = t.jobApplicationConfirmation;
 
@@ -56,7 +57,7 @@ export const JobApplicationConfirmationContent = ({
   );
 };
 
-const JobApplicationConfirmation = (props: JobApplicationConfirmationProps) => {
+const JobApplicationConfirmation = (props: JobApplicationConfirmationProps): ReactElement => {
   const { t } = useTranslation(props.locale);
   const conf = t.jobApplicationConfirmation;
 

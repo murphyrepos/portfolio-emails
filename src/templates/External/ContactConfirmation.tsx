@@ -4,6 +4,7 @@ import EmailLayout from '../../components/EmailLayout';
 import MessageBlock from '../../components/MessageBlock';
 import { useTranslation } from '../../i18n/useTranslation';
 import type { EmailProps } from '../../types';
+import type { ReactElement } from 'react';
 
 export type ContactConfirmationTemplateProps = {
   inquiryType: string;
@@ -19,7 +20,7 @@ export const ContactConfirmationContent = ({
   name,
   email,
   template: { inquiryType, company = '', budget = '', message },
-}: ContactConfirmationProps) => {
+}: ContactConfirmationProps): ReactElement => {
   const { t } = useTranslation(locale);
   const conf = t.contactConfirmation;
 
@@ -54,7 +55,7 @@ export const ContactConfirmationContent = ({
   );
 };
 
-const ContactConfirmation = (props: ContactConfirmationProps) => {
+const ContactConfirmation = (props: ContactConfirmationProps): ReactElement => {
   const { t } = useTranslation(props.locale);
   const conf = t.contactConfirmation;
 

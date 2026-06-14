@@ -6,6 +6,7 @@ import MessageBlock from '../../components/MessageBlock';
 import StepList from '../../components/StepList';
 import { useTranslation } from '../../i18n/useTranslation';
 import type { EmailProps } from '../../types';
+import type { ReactElement } from 'react';
 
 export type ContactInquiryInternalTemplateProps = {
   inquiryType: string;
@@ -22,7 +23,7 @@ export const ContactInquiryInternalContent = ({
   name,
   email,
   template: { inquiryType, company = '', budget = '', message, submittedAt = '' },
-}: ContactInquiryInternalProps) => {
+}: ContactInquiryInternalProps): ReactElement => {
   const { t, interpolate } = useTranslation(locale);
   const conf = t.contactInquiryInternal;
 
@@ -51,7 +52,7 @@ export const ContactInquiryInternalContent = ({
   );
 };
 
-const ContactInquiryInternal = (props: ContactInquiryInternalProps) => {
+const ContactInquiryInternal = (props: ContactInquiryInternalProps): ReactElement => {
   const { t, interpolate } = useTranslation(props.locale);
   const conf = t.contactInquiryInternal;
 

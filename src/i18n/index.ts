@@ -2,13 +2,86 @@ import en from './locales/en.json';
 
 export const languages = ['en', 'de'] as const;
 
-export const emailLocales = {
+export type EmailLocale = (typeof languages)[number];
+
+export type EmailMessages = {
+  common: {
+    brandName: string;
+    tagline: string;
+    contactEmail: string;
+    careersEmail: string;
+    copyright: string;
+    disclaimer: string;
+  };
+  labels: {
+    inquiryType: string;
+    name: string;
+    email: string;
+    company: string;
+    budget: string;
+    message: string;
+    position: string;
+    jobCode: string;
+    phone: string;
+    links: string;
+    coverLetter: string;
+    resume: string;
+    contactSummary: string;
+    contactDetails: string;
+    applicationSummary: string;
+    candidateDetails: string;
+    submitted: string;
+    nextSteps: string;
+    whatHappensNext: string;
+  };
+  contactInquiryInternal: {
+    subject: string;
+    preview: string;
+    title: string;
+    subtitle: string;
+    intro: string;
+    messageLabel: string;
+    nextSteps: string;
+  };
+  contactConfirmation: {
+    subject: string;
+    preview: string;
+    title: string;
+    subtitle: string;
+    intro: string;
+    messageLabel: string;
+    outro: string;
+    signature: string;
+    team: string;
+  };
+  jobApplicationInternal: {
+    subject: string;
+    preview: string;
+    title: string;
+    subtitle: string;
+    intro: string;
+    resumeAttached: string;
+  };
+  jobApplicationConfirmation: {
+    subject: string;
+    preview: string;
+    title: string;
+    subtitle: string;
+    intro: string;
+    summaryIntro: string;
+    nextStepsTitle: string;
+    nextSteps: string;
+    outro: string;
+    referenceNote: string;
+    signature: string;
+    team: string;
+  };
+};
+
+const emailLocales: Record<EmailLocale, EmailMessages> = {
   en,
   de: en,
-} satisfies Record<(typeof languages)[number], typeof en>;
-
-export type EmailLocale = (typeof languages)[number];
-export type EmailMessages = (typeof emailLocales)[EmailLocale];
+};
 
 export const defaultEmailLocale: EmailLocale = 'en';
 
