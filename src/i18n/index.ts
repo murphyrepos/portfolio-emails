@@ -1,8 +1,13 @@
 import en from './locales/en.json';
 
-export const emailLocales = { en } as const;
+export const languages = ['en', 'de'] as const;
 
-export type EmailLocale = keyof typeof emailLocales;
+export const emailLocales = {
+  en,
+  de: en,
+} satisfies Record<(typeof languages)[number], typeof en>;
+
+export type EmailLocale = (typeof languages)[number];
 export type EmailMessages = (typeof emailLocales)[EmailLocale];
 
 export const defaultEmailLocale: EmailLocale = 'en';

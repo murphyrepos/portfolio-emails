@@ -1,16 +1,32 @@
-import JobApplicationInternal from '../../src/templates/Internal/JobApplicationInternal';
+import { getEmailMessages, interpolate, languages } from '../../src/i18n';
+import JobApplicationInternal, {
+  JobApplicationInternalContent,
+} from '../../src/templates/Internal/JobApplicationInternal';
+import LocalizedEmailPreview from '../_components/LocalizedEmailPreview';
+import { createJobApplicationInternalPreviewProps } from '../sampleData';
 
-const props = {
-  position: 'Senior Software Engineer',
-  jobCode: 'MR-2026-00847',
-  name: 'Michael Torres',
-  email: 'michael.torres@example.com',
-  phone: '+1 555 010 0199',
-  links: 'https://michaeltorres.dev',
-  coverLetter:
-    'I have spent the last six years building design systems and production React applications, and I would love to bring that experience to your team.',
-};
+const props = createJobApplicationInternalPreviewProps(4001);
 
-export const English = () => <JobApplicationInternal locale="en" {...props} />;
+export const English = () => <JobApplicationInternal {...props} locale="en" />;
 
-export default English;
+const Preview = () => (
+  <LocalizedEmailPreview
+    languages={languages}
+    getPreview={(locale) =>
+      interpolate(getEmailMessages(locale).jobApplicationInternal.preview, {
+        name: props.name,
+        position: props.template.position,
+      })
+    }
+    getSubject={(locale) =>
+      interpolate(getEmailMessages(locale).jobApplicationInternal.subject, {
+        position: props.template.position,
+        jobCode: props.template.jobCode,
+      })
+    }
+    getTitle={(locale) => getEmailMessages(locale).jobApplicationInternal.title}
+    renderBody={(locale) => <JobApplicationInternalContent {...props} locale={locale} />}
+  />
+);
+
+export default Preview;

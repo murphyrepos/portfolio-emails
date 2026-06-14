@@ -3,31 +3,28 @@ import DetailTable from '../../components/DetailTable';
 import EmailLayout from '../../components/EmailLayout';
 import MessageBlock from '../../components/MessageBlock';
 import { useTranslation } from '../../i18n/useTranslation';
+import type { EmailProps } from '../../types';
 
-export type ContactConfirmationProps = {
-  locale?: string;
+export type ContactConfirmationTemplateProps = {
   inquiryType: string;
-  name: string;
-  email: string;
   company?: string;
   budget?: string;
   message: string;
 };
 
-const ContactConfirmation = ({
+export type ContactConfirmationProps = EmailProps<ContactConfirmationTemplateProps>;
+
+export const ContactConfirmationContent = ({
   locale,
-  inquiryType,
   name,
   email,
-  company = '',
-  budget = '',
-  message,
+  template: { inquiryType, company = '', budget = '', message },
 }: ContactConfirmationProps) => {
   const { t } = useTranslation(locale);
   const conf = t.contactConfirmation;
 
   return (
-    <EmailLayout preview={conf.preview} title={conf.title} locale={locale}>
+    <>
       <Text className="m-0 text-[15px] leading-relaxed text-ink">
         Hi <strong>{name}</strong>,
       </Text>
@@ -53,6 +50,17 @@ const ContactConfirmation = ({
         <br />
         <strong className="text-brand">{conf.team}</strong>
       </Text>
+    </>
+  );
+};
+
+const ContactConfirmation = (props: ContactConfirmationProps) => {
+  const { t } = useTranslation(props.locale);
+  const conf = t.contactConfirmation;
+
+  return (
+    <EmailLayout preview={conf.preview} title={conf.title} locale={props.locale}>
+      <ContactConfirmationContent {...props} />
     </EmailLayout>
   );
 };

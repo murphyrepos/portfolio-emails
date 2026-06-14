@@ -21,6 +21,20 @@ type EmailLayoutProps = {
   children: ReactNode;
 };
 
+type EmailChromeProps = {
+  title: string;
+  locale?: string;
+  children: ReactNode;
+};
+
+export const EmailChrome = ({ title, locale, children }: EmailChromeProps) => (
+  <Container width="768" className="mx-auto rounded-lg bg-white shadow-sm" style={containerStyle}>
+    <CompanyHeader title={title} locale={locale} />
+    <Section className="bg-white px-8 pb-5 pt-8">{children}</Section>
+    <CompanyFooter locale={locale} />
+  </Container>
+);
+
 const EmailLayout = ({ preview, title, locale, children }: EmailLayoutProps) => {
   return (
     <Tailwind config={tailwindConfig}>
@@ -28,15 +42,9 @@ const EmailLayout = ({ preview, title, locale, children }: EmailLayoutProps) => 
         <Head />
         <Preview>{preview}</Preview>
         <Body className="m-0 bg-white py-6 font-sans">
-          <Container
-            width="768"
-            className="mx-auto rounded-lg bg-white shadow-sm"
-            style={containerStyle}
-          >
-            <CompanyHeader title={title} locale={locale} />
-            <Section className="bg-white px-8 pb-5 pt-8">{children}</Section>
-            <CompanyFooter locale={locale} />
-          </Container>
+          <EmailChrome title={title} locale={locale}>
+            {children}
+          </EmailChrome>
         </Body>
       </Html>
     </Tailwind>

@@ -5,27 +5,23 @@ import EmailLayout from '../../components/EmailLayout';
 import MessageBlock from '../../components/MessageBlock';
 import StepList from '../../components/StepList';
 import { useTranslation } from '../../i18n/useTranslation';
+import type { EmailProps } from '../../types';
 
-export type ContactInquiryInternalProps = {
-  locale?: string;
+export type ContactInquiryInternalTemplateProps = {
   inquiryType: string;
-  name: string;
-  email: string;
   company?: string;
   budget?: string;
   message: string;
   submittedAt?: string;
 };
 
-const ContactInquiryInternal = ({
+export type ContactInquiryInternalProps = EmailProps<ContactInquiryInternalTemplateProps>;
+
+export const ContactInquiryInternalContent = ({
   locale,
-  inquiryType,
   name,
   email,
-  company = '',
-  budget = '',
-  message,
-  submittedAt = '',
+  template: { inquiryType, company = '', budget = '', message, submittedAt = '' },
 }: ContactInquiryInternalProps) => {
   const { t, interpolate } = useTranslation(locale);
   const conf = t.contactInquiryInternal;
@@ -40,7 +36,7 @@ const ContactInquiryInternal = ({
   ].filter((row): row is { label: string; value: string } => Boolean(row));
 
   return (
-    <EmailLayout preview={interpolate(conf.preview, { name })} title={conf.title} locale={locale}>
+    <>
       <Text className="m-0 text-[16px] leading-relaxed text-slate-700">{conf.intro}</Text>
       <DetailTable title={t.labels.contactDetails} rows={rows} variant="accent" />
       <MessageBlock title={conf.messageLabel} variant="accent">
@@ -51,6 +47,21 @@ const ContactInquiryInternal = ({
       <EmailCallout title={t.labels.nextSteps}>
         <StepList steps={conf.nextSteps.split('\n')} />
       </EmailCallout>
+    </>
+  );
+};
+
+const ContactInquiryInternal = (props: ContactInquiryInternalProps) => {
+  const { t, interpolate } = useTranslation(props.locale);
+  const conf = t.contactInquiryInternal;
+
+  return (
+    <EmailLayout
+      preview={interpolate(conf.preview, { name: props.name })}
+      title={conf.title}
+      locale={props.locale}
+    >
+      <ContactInquiryInternalContent {...props} />
     </EmailLayout>
   );
 };

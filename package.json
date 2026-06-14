@@ -21,6 +21,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.4.0",
     "@react-email/ui": "^6.6.0",
     "@types/react": "^19.2.13",
     "prettier": "^3.8.4",

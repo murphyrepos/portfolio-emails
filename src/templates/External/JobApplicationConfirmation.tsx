@@ -3,23 +3,21 @@ import DetailTable from '../../components/DetailTable';
 import EmailCallout from '../../components/EmailCallout';
 import EmailLayout from '../../components/EmailLayout';
 import { useTranslation } from '../../i18n/useTranslation';
+import type { EmailProps } from '../../types';
 
-export type JobApplicationConfirmationProps = {
-  locale?: string;
+export type JobApplicationConfirmationTemplateProps = {
   position: string;
   jobCode: string;
-  name: string;
-  email: string;
   submittedAt?: string;
 };
 
-const JobApplicationConfirmation = ({
+export type JobApplicationConfirmationProps = EmailProps<JobApplicationConfirmationTemplateProps>;
+
+export const JobApplicationConfirmationContent = ({
   locale,
-  position,
-  jobCode,
   name,
   email,
-  submittedAt = '',
+  template: { position, jobCode, submittedAt = '' },
 }: JobApplicationConfirmationProps) => {
   const { t, interpolate } = useTranslation(locale);
   const conf = t.jobApplicationConfirmation;
@@ -33,7 +31,7 @@ const JobApplicationConfirmation = ({
   ].filter((row): row is { label: string; value: string } => Boolean(row));
 
   return (
-    <EmailLayout preview={conf.preview} title={conf.title} locale={locale}>
+    <>
       <Text className="m-0 text-[15px] leading-relaxed text-ink">
         Hi <strong>{name}</strong>,
       </Text>
@@ -54,6 +52,17 @@ const JobApplicationConfirmation = ({
         <br />
         <strong className="text-brand">{conf.team}</strong>
       </Text>
+    </>
+  );
+};
+
+const JobApplicationConfirmation = (props: JobApplicationConfirmationProps) => {
+  const { t } = useTranslation(props.locale);
+  const conf = t.jobApplicationConfirmation;
+
+  return (
+    <EmailLayout preview={conf.preview} title={conf.title} locale={props.locale}>
+      <JobApplicationConfirmationContent {...props} />
     </EmailLayout>
   );
 };

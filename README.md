@@ -54,9 +54,11 @@ so it stays readable on the blue background.
 ## i18n
 
 Email copy lives in `src/i18n/locales/<locale>.json`. To add a language, copy
-`en.json`, translate it, and register it in `src/i18n/index.ts`
-(`emailLocales`). Subjects live there too — the portfolio API routes read them
-via `getEmailMessages(locale)` so subject and body always match.
+`en.json`, translate it, and register it in `src/i18n/index.ts` (`languages`
+and `emailLocales`). When `languages` has more than one locale, the React Email
+previews show a language switcher automatically. Subjects live there too — the
+portfolio API routes read them via `getEmailMessages(locale)` so subject and
+body always match.
 
 ## Using from the portfolio
 

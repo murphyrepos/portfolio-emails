@@ -3,39 +3,32 @@ import DetailTable from '../../components/DetailTable';
 import EmailLayout from '../../components/EmailLayout';
 import MessageBlock from '../../components/MessageBlock';
 import { useTranslation } from '../../i18n/useTranslation';
+import type { EmailProps } from '../../types';
 
-export type JobApplicationInternalProps = {
-  locale?: string;
+export type JobApplicationInternalTemplateProps = {
   position: string;
   jobCode: string;
-  name: string;
-  email: string;
   phone?: string;
   links?: string;
   coverLetter: string;
   resumeUrl?: string;
 };
 
-const JobApplicationInternal = ({
+export type JobApplicationInternalProps = EmailProps<JobApplicationInternalTemplateProps>;
+
+export const JobApplicationInternalContent = ({
   locale,
-  position,
-  jobCode,
   name,
   email,
-  phone = '',
-  links = '',
-  coverLetter,
-  resumeUrl,
+  attachment,
+  template: { position, jobCode, phone = '', links = '', coverLetter, resumeUrl },
 }: JobApplicationInternalProps) => {
   const { t, interpolate } = useTranslation(locale);
   const conf = t.jobApplicationInternal;
+  const resumeHref = attachment?.url ?? resumeUrl;
 
   return (
-    <EmailLayout
-      preview={interpolate(conf.preview, { name, position })}
-      title={conf.title}
-      locale={locale}
-    >
+    <>
       <Text className="m-0 text-[16px] leading-relaxed text-slate-700">
         {interpolate(conf.intro, { name, position, jobCode })}
       </Text>
@@ -57,14 +50,32 @@ const JobApplicationInternal = ({
         </Text>
       </MessageBlock>
       <MessageBlock title={t.labels.resume} variant="accent">
-        {resumeUrl ? (
-          <Link href={resumeUrl} className="text-[15px] text-brand">
-            {resumeUrl}
+        {resumeHref ? (
+          <Link href={resumeHref} className="text-[15px] text-brand">
+            {conf.resumeAttached}
           </Link>
+        ) : attachment?.name ? (
+          <Text className="m-0 text-[15px] text-slate-700">{conf.resumeAttached}</Text>
         ) : (
           <Text className="m-0 text-[15px] text-slate-700">{conf.resumeAttached}</Text>
         )}
       </MessageBlock>
+    </>
+  );
+};
+
+const JobApplicationInternal = (props: JobApplicationInternalProps) => {
+  const { t, interpolate } = useTranslation(props.locale);
+  const conf = t.jobApplicationInternal;
+  const { name, template } = props;
+
+  return (
+    <EmailLayout
+      preview={interpolate(conf.preview, { name, position: template.position })}
+      title={conf.title}
+      locale={props.locale}
+    >
+      <JobApplicationInternalContent {...props} />
     </EmailLayout>
   );
 };
