@@ -1,7 +1,7 @@
 import { Body, Container, Head, Html, Preview, Section, Tailwind } from '@react-email/components';
 import type { CSSProperties, ReactNode } from 'react';
 import { tailwindConfig } from '../theme';
-import { defaultEmailLocale } from '../i18n';
+import { resolveEmailLocale } from '../i18n';
 import CompanyFooter from './CompanyFooter';
 import CompanyHeader from './CompanyHeader';
 
@@ -36,13 +36,15 @@ export const EmailChrome = ({ title, locale, children }: EmailChromeProps) => (
 );
 
 const EmailLayout = ({ preview, title, locale, children }: EmailLayoutProps) => {
+  const resolvedLocale = resolveEmailLocale(locale);
+
   return (
     <Tailwind config={tailwindConfig}>
-      <Html lang={locale ?? defaultEmailLocale}>
+      <Html lang={resolvedLocale}>
         <Head />
         <Preview>{preview}</Preview>
         <Body className="m-0 bg-white py-6 font-sans">
-          <EmailChrome title={title} locale={locale}>
+          <EmailChrome title={title} locale={resolvedLocale}>
             {children}
           </EmailChrome>
         </Body>

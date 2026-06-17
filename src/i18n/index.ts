@@ -1,6 +1,6 @@
 import en from './locales/en.json';
 
-export const languages = ['en', 'de'] as const;
+export const languages = ['en'] as const;
 
 export type EmailLocale = (typeof languages)[number];
 
@@ -78,15 +78,15 @@ export type EmailMessages = {
   };
 };
 
-const emailLocales: Record<EmailLocale, EmailMessages> = {
-  en,
-  de: en,
-};
+const emailLocales: Record<EmailLocale, EmailMessages> = { en };
 
 export const defaultEmailLocale: EmailLocale = 'en';
 
+export const resolveEmailLocale = (locale?: string): EmailLocale =>
+  languages.includes(locale as EmailLocale) ? (locale as EmailLocale) : defaultEmailLocale;
+
 export const getEmailMessages = (locale?: string): EmailMessages =>
-  emailLocales[locale as EmailLocale] ?? emailLocales[defaultEmailLocale];
+  emailLocales[resolveEmailLocale(locale)];
 
 export const interpolate = (template: string, vars: Record<string, string>): string =>
   template.replace(/\{\{(\w+)\}\}/g, (match, key) => vars[key] ?? match);

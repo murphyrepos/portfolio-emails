@@ -1,4 +1,4 @@
-import { Link, Text } from '@react-email/components';
+import { Text } from '@react-email/components';
 import DetailTable from '../../components/DetailTable';
 import EmailLayout from '../../components/EmailLayout';
 import MessageBlock from '../../components/MessageBlock';
@@ -21,12 +21,10 @@ export const JobApplicationInternalContent = ({
   locale,
   name,
   email,
-  attachment,
-  template: { position, jobCode, phone = '', links = '', coverLetter, resumeUrl },
+  template: { position, jobCode, phone = '', links = '', coverLetter },
 }: JobApplicationInternalProps): ReactElement => {
   const { t, interpolate } = useTranslation(locale);
   const conf = t.jobApplicationInternal;
-  const resumeHref = attachment?.url ?? resumeUrl;
 
   return (
     <>
@@ -49,17 +47,6 @@ export const JobApplicationInternalContent = ({
         <Text className="m-0 whitespace-pre-wrap text-[15px] leading-relaxed text-slate-700">
           {coverLetter}
         </Text>
-      </MessageBlock>
-      <MessageBlock title={t.labels.resume} variant="accent">
-        {resumeHref ? (
-          <Link href={resumeHref} className="text-[15px] text-brand">
-            {conf.resumeAttached}
-          </Link>
-        ) : attachment?.name ? (
-          <Text className="m-0 text-[15px] text-slate-700">{conf.resumeAttached}</Text>
-        ) : (
-          <Text className="m-0 text-[15px] text-slate-700">{conf.resumeAttached}</Text>
-        )}
       </MessageBlock>
     </>
   );
