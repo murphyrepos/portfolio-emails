@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 declare const process:
   | {
       env?: Record<string, string | undefined>;
@@ -42,7 +40,7 @@ type UseEmailAssetsOptions = {
 };
 
 export const useEmailAssets = ({ logoUrl, logoMarkUrl }: UseEmailAssetsOptions = {}) =>
-  useMemo(() => {
+  {
     const assetBaseUrl = getEmailAssetBaseUrl();
 
     return {
@@ -50,4 +48,4 @@ export const useEmailAssets = ({ logoUrl, logoMarkUrl }: UseEmailAssetsOptions =
       logoUrl: logoUrl ?? `${assetBaseUrl}/logos/white.png`,
       logoMarkUrl: logoMarkUrl ?? `${assetBaseUrl}/logos/small_white.png`,
     };
-  }, [logoUrl, logoMarkUrl]);
+  };
