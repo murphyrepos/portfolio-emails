@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { getEmailMessages, interpolate, type EmailMessages } from './index';
 
 type EmailTranslation = {
@@ -6,11 +5,7 @@ type EmailTranslation = {
   interpolate: typeof interpolate;
 };
 
-export const useTranslation = (locale?: string): EmailTranslation =>
-  useMemo(
-    () => ({
-      t: getEmailMessages(locale),
-      interpolate,
-    }),
-    [locale],
-  );
+export const useTranslation = (locale?: string): EmailTranslation => ({
+  t: getEmailMessages(locale),
+  interpolate,
+});
