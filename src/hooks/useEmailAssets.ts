@@ -39,13 +39,12 @@ type UseEmailAssetsOptions = {
   logoMarkUrl?: string;
 };
 
-export const useEmailAssets = ({ logoUrl, logoMarkUrl }: UseEmailAssetsOptions = {}) =>
-  {
-    const assetBaseUrl = getEmailAssetBaseUrl();
+export const useEmailAssets = ({ logoUrl, logoMarkUrl }: UseEmailAssetsOptions = {}) => {
+  const assetBaseUrl = getEmailAssetBaseUrl();
 
-    return {
-      assetBaseUrl,
-      logoUrl: logoUrl ?? `${assetBaseUrl}/logos/white.png`,
-      logoMarkUrl: logoMarkUrl ?? `${assetBaseUrl}/logos/small_white.png`,
-    };
+  return {
+    assetBaseUrl,
+    logoUrl: logoUrl ?? `${assetBaseUrl}/logos/white.png`,
+    logoMarkUrl: logoMarkUrl ?? `${assetBaseUrl}/logos/small_white.png`,
   };
+};
