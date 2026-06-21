@@ -8,4 +8,10 @@ export default defineConfig({
   packages: 'external',
   external: ['react', 'react-dom', '@react-email/components'],
   splitting: false,
+  define: {
+    'process.env.NODE_ENV': '"production"',
+  },
+  jsx: {
+    development: false,
+  },
 });
