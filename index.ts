@@ -22,6 +22,9 @@ export type {
   JobApplicationConfirmationTemplateProps,
 } from './src/templates/External/JobApplicationConfirmation';
 
+export { default as OutreachEmail } from './src/templates/External/OutreachEmail';
+export type { OutreachEmailProps } from './src/templates/External/OutreachEmail';
+
 export {
   defaultEmailLocale,
   getEmailMessages,
